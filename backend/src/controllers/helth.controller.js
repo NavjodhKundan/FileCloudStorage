@@ -4,5 +4,8 @@
 // }
 
 export const checkHealth = (request, response) => {
-    response.send("comming from backend...");
+    response.status(200).send({
+        status: "Connected",
+        message: "Frontend and backend are communicating"
+    });
 }

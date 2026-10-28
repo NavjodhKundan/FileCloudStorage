@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import healthRouter from "./routes/health.routes.js";
+import userAuthRouter from "./routes/userAuth.route.js";
 
 dotenv.config();
 
@@ -15,5 +16,6 @@ app.use(cors({
 //middleware
 app.use(express.json());
 app.use("/", healthRouter);
+app.use("/", userAuthRouter);
 
 app.listen(PORT, () => console.log(`Backend is running at http://localhost:${PORT}`));
