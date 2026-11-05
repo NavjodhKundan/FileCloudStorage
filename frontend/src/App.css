@@ -3,36 +3,91 @@ body{
     margin: 0;
 }
 
-/* css styling for dashboard page */
-.dashboard{
+/* css styling for login and signup page */
+.authBody{
+    border: 1px solid;
+    height: 100vh;background-color: #dad3ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.authCard{
+    background-color: #1D125C;
+    height: 600px;
+    width: 550px;
+    text-align: center;
+    border-radius: 15px;
+}
+.authCard img{
+    margin-top: 25px;
+    height: 150px;
+    width: 500px;
+}
+.authCard h1{
+    color: white;
+}
+.authCard input{
+    height: 35px;
+    width: 250px;
+    margin: 10px;
+    text-align: center;
+    font-size: 18px;
+}
+.authCard button{
+    height: 30px;
+    width: 200px;
+    color: black;
+    font-size: 16px;
+    background-color: #dad3ff;
+    margin: 5px;
+}
+.authCard button:hover{
+    background-color: #85a9e2;
+    cursor: pointer;
+    width: 201px;
+    height: 31px;
+}
+.authCard p{
+    color: white;
+    font-size: 18px;
+}
+#link{
+    text-decoration: none;
+    color: #85a9e2;
+}
+
+/* css styling for full page this arranges body into sections, navigation bar and header plus main body */
+.fullBody{
     display: grid;
     grid-template-columns: 240px minmax(0, 1fr);
     min-height: 100vh;
 }
 
+/* css style for the header plus main body. It arranges header & main body into columns and divides the space accordingly. */
 .rightSide{
     display: grid;
     grid-template-rows: auto minmax(0, 1fr);
     min-width: 0;
 }
 
-.dashBody{
+/* cs styling for main body that divides the area into two sections: one for file upload and second for main page content like dashboard, files and settings. */
+.mainBody{
     display: flex;
     align-items: flex-start;
 }
 
+/* sccstyling for navigation bar */
 .navbar{
     background-color: #1D125C;
-    min-height: 100vh;
+    height: 100%;
     padding: 10px 10px 10px 10px;
     color: white;
 }
-
 .comLogo img{
     height: 200px;
     width: 200px;
 }
-
 .navbar nav {
     display: flex;
     flex-direction: column;
@@ -54,7 +109,6 @@ body{
     border-radius: 10px;
     cursor: pointer;
 }
-
 #navlist{
     text-decoration: none;
     color: white;
@@ -74,31 +128,117 @@ body{
 .bodyHeader{
     margin: 20px;
     display: flex;
-    
+}
+#firstChild{
+    flex: 7;
+}
+#secondChild{
+    flex: 0.5;
+    padding-top: 20px;
+}
+#thirdChild{
+    flex: 1.5;
+    padding-top: 20px;
 }
 #searchBar{
-    width: 80%;
+    width: 95%;
     height: 40px;
     font-size: large;
+    font-size: 20px;
     border-radius: 20px;
-    padding: 5px;
+    padding: 5px 0 5px 20px;
 }
-.bodyHeader img {
-    height: 50px;
+.userImgage img {
+    height: 90px;
     border-radius: 50px;
     margin: 0 10px 0 10px;
 }
+.userName p {
+    font-size: 30px;
+}
 
-.mainbody{
-    border: 1px solid;
+/* css styling for middle body that displayes dashoard, settings and file contents */
+.middleBody{
     flex: 7;
     margin: 20px;
     height: 100%;
+    margin-top: 0;
 }
 
+/* css styling for file upload section */
 .fileUpload{
-    border: 1px solid;
-    height: 100vh;
     flex: 3;
     margin: 20px;
+    margin-top: 0;
 }
+.uploadCard{
+    margin: 10px;
+    padding: 10px;
+    background-color: #f5f5f5;
+    text-align: center;
+    border-radius: 10px;
+
+}
+.uploadCard img {
+    height: 200px;
+    width: 200px;
+}
+.uploadCard p {
+    margin: 0 20px 0 20px;
+}
+.uploadCard button {
+    background-color: #85a9e2;
+    width: 350px;
+    height: 50px;
+    font-size: 25px;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    margin-top: 10px;
+}
+.uploadCard button:hover{
+    cursor: pointer;
+    background-color: #a195e7;
+}
+
+/* css styling for storage card */
+.storageCard {
+    margin: 10px;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+}
+
+/* styling for fileCard */
+.fileCard {
+    width: 100%;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 5px 0 5px 0;
+    height: 50px;
+    padding-top: 20px;
+}
+.fileCard:hover{
+    background-color: #f8fafc;
+}
+.fileCard li{
+    font-size: 18px;
+    text-align: center;
+    display: grid;
+    grid-template-columns: 2fr 1fr 2fr 2fr 1fr 1fr  5px;
+    padding-top: 5px;
+}
+.fileCard button{
+    border: none;
+    font-size: 18px;
+}
+.fileCard button:hover{
+    cursor: pointer;
+    background-color: rgb(79, 149, 235);
+    font-size: 20px;
+}
+.fileCard button:hover title{
+    background-color: white;
+}
+

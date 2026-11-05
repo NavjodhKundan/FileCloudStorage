@@ -6,7 +6,7 @@ export async function loginRequest(event:any, navigate:any) {
 
     event.preventDefault(); //preventing default browser actions.
 
-    const {email, password, updatePassword, updateAccessToken, updateFirstName, updateLastName, updateEmail, updateId} = userInfo.getState();
+    const {email, password, updatePassword, updateAccessToken, updateFirstName, updateLastName, updateEmail, updateId, updateStorageLimit, updateStorageUsed} = userInfo.getState();
 
     try {
         //sending request to backend
@@ -27,10 +27,12 @@ export async function loginRequest(event:any, navigate:any) {
         }
         updatePassword("");//clearing password from global state
         updateId(data.user.id);
-        updateAccessToken(data.user.accessToken);
+        updateAccessToken(data.accessToken);
         updateEmail(data.user.email);
         updateFirstName(data.user.firstName);
         updateLastName(data.user.lastName);
+        updateStorageLimit(data.user.storageLimit);
+        updateStorageUsed(data.user.storageUsed);
         navigate("/dashboard");//navigating user to dashboard
     } catch (error) {
         console.error(error);

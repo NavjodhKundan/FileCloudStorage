@@ -18,8 +18,8 @@ export const NavigationBar = () => {
             </div>
             <nav>
                 <NavLink to="/dashboard" id="navlist">🏠︎ Dashboard</NavLink>
-                <NavLink to="/" id="navlist">📄 Files</NavLink>
-                <NavLink to="/" id="navlist" >⚙️ Settings</NavLink>
+                <NavLink to="/files" id="navlist">📄 Files</NavLink>
+                <NavLink to="/settings" id="navlist" >⚙️ Settings</NavLink>
                 <button onClick={handelLogout}>➜] Logout</button>
             </nav>
         </div>
