@@ -3,6 +3,7 @@ import { z } from "zod";
 import { signupInfoVal, loginInfoVal } from "../middleware/userValidation.js";
 import bcrypt from "bcryptjs";
 import { createToken } from "../middleware/tokens.js";
+import { createUserFolder } from "../middleware/CreateUserFolder.js";
 
 export const userSignup = async (req, res) => {
     try {
@@ -15,15 +16,31 @@ export const userSignup = async (req, res) => {
             return res.status(400).json({ message: "An account exists using this email" });
         } 
         const hashPassword = await bcrypt.hash(password, 10);
-        const { data: createdUser, error: insert_error } = await supabase.from('users').insert({ first_name:firstName, last_name:lastName, email:email, password:hashPassword }).select('id').maybeSingle();
+        const { data: createdUser, error: insert_error } = await supabase.from('users').insert({ 
+            first_name:firstName, 
+            last_name:lastName, email:email, 
+            password:hashPassword, 
+        }).select().maybeSingle();
         if(insert_error){
             return res.status(500).json({ message: "Error creating user" });
         }
         if(!createdUser){
             return res.status(500).json({ message: "did not recive user after creation" });
         }
-        const accessToken = createToken(createdUser.id);
-        return res.status(200).json({message: "successful", accessToken: accessToken, user: {id: createdUser.id, firstName: createdUser.first_name, lastName: createdUser.last_name, email: createdUser.email}});
+        const accessToken = createToken(createdUser.id, createdUser.firs_name, createdUser.las_name);
+        await createUserFolder(createdUser.first_name, createdUser.last_name, createdUser.id);
+        return res.status(200).json({
+            message: "successful", 
+            accessToken: accessToken, 
+            user: {
+                id: createdUser.id, 
+                firstName: createdUser.first_name, 
+                lastName: createdUser.last_name, 
+                email: createdUser.email,
+                storageLimit: createdUser.storage_limit,
+                storgaeUsed: createdUser.storgae_used,
+            }
+        });
     } catch (error) {
         if(error instanceof z.ZodError){
             res.status(400).json({
@@ -49,8 +66,19 @@ export const userLogin = async (req, res) => {
         if(!isMatch){
              return res.status(401).json({ message:"password does not match" });
         }
-        const accessToken = createToken(data.id);
-        return res.status(200).json({message: "successful", accessToken: accessToken, user: {id: data.id,firstName: data.first_name, lastName: data.last_name, email: data.email}});
+        const accessToken = createToken(data.id, data.first_name, data.last_name);
+        return res.status(200).json({
+            message: "successful",
+            accessToken: accessToken,
+            user: { 
+                id: data.id,
+                firstName: data.first_name, 
+                lastName: data.last_name,
+                email: data.email,
+                storageLimit: data.storage_limit,
+                storageUsed: data.storage_used,
+            }
+        });
     } catch (error) {
         if(error instanceof z.ZodError){
             return res.status(400).json({

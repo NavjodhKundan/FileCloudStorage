@@ -3,6 +3,8 @@ import dotenv from "dotenv";
 import cors from "cors";
 import healthRouter from "./routes/health.routes.js";
 import userAuthRouter from "./routes/userAuth.route.js";
+import uploadsRouter from "./routes/uploads.routes.js";
+import fileOperationsRouter from "./routes/fileCRUD.routes.js";
 
 dotenv.config();
 
@@ -17,5 +19,7 @@ app.use(cors({
 app.use(express.json());
 app.use("/", healthRouter);
 app.use("/", userAuthRouter);
+app.use("/fileUplaodRouter", uploadsRouter);
+app.use("/fileoperationsrouters", fileOperationsRouter);
 
 app.listen(PORT, () => console.log(`Backend is running at http://localhost:${PORT}`));
