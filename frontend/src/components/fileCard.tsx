@@ -1,3 +1,5 @@
+import { userInfo } from "../states/zustandStates";
+
 export function formatFileSize(size: number): string {
     if (size < 1024) {
         return `${size} bytes`;
@@ -35,7 +37,40 @@ export function formatFileType(fileType: string): string{
     return types[fileType] || "unknown";
 }
 
+async function deleteFile(fileId: number){
+    const { accessToken, updateStorageUsed } = userInfo.getState();
+    const API_URL = import.meta.env.VITE_API_URL;
+    try{
+        const response = await fetch(
+            `${API_URL}/deleteFileRouter/deleteFileController`,
+            {
+                method: "DELETE",
+                headers: { 
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${accessToken}` 
+                },
+                body: JSON.stringify({ fileId: fileId})
+            }
+        )
+
+        const data = await response.json();
+
+        if(!response.ok){
+            console.log("error from backend");
+            console.log(data.message);
+            return;
+        }
+
+        updateStorageUsed(data.storageUsed);
+        alert("File deleted successfully!");
+        window.location.reload();
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 type fileInfo = {
+    fileId: number,
     name: string,
     size: number,
     type: string,
@@ -51,7 +86,7 @@ export const FileCard = (props: fileInfo) => {
                 <span>{formatFileType(props.type)}</span>
                 <span>{formatDate(props.createdAt)}</span>
                 <span><button title="download file">⬇️</button></span>
-                <span><button title="delete file">❌</button></span>
+                <span><button onClick={() => deleteFile(props.fileId)} title="delete file">❌</button></span>
             </li>
         </div>
     )

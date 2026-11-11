@@ -7,7 +7,9 @@ import { FileUpload } from "../layouts/FileUpload"
 export const Dashboard = () => {
     return (
         <div className="fullBody">
-            <NavigationBar />
+            <div className="leftSide">
+                <NavigationBar />
+            </div>
             <div className="rightSide">
                 <div className="bodyHeader">
                     <span id="firstChild" style={{fontSize: '25px'}}><h1>Welcome to your dashboard!</h1></span>

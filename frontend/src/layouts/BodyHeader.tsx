@@ -1,10 +1,15 @@
 import defaultImage from "../assets/defaultImage.png"
 import { userInfo } from "../states/zustandStates"
 
-export const SearchBar = () => {
+type SearchBarProps = {
+        searchQuery: string;
+        setSearchQuery: (value: string) => void;
+    }
+export const SearchBar = ({searchQuery, setSearchQuery}: SearchBarProps) => {
+
     return (
         <div className="searchBar">
-            <input type="text" placeholder="🔍︎ search..." id="searchBar"></input>
+            <input type="text" placeholder="🔍︎ search..." id="searchBar" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}></input>
         </div>
     )
 }
@@ -26,11 +31,11 @@ export const UserName = () => {
     )
 }
 
-export const BodyHeader = () => {
+export const BodyHeader = ({searchQuery, setSearchQuery}: SearchBarProps) => {
 
     return (
         <div className="bodyHeader">
-            <span id="firstChild" style={{marginTop:"30px"}}><SearchBar/></span>
+            <span id="firstChild" style={{marginTop:"30px"}}><SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery}/></span>
             <span id="secondChild"><UserImage/></span>
             <span id="thirdChild"><UserName/></span>
         </div>
