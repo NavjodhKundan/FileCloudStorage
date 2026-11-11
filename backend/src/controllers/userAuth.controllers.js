@@ -38,7 +38,7 @@ export const userSignup = async (req, res) => {
                 lastName: createdUser.last_name, 
                 email: createdUser.email,
                 storageLimit: createdUser.storage_limit,
-                storgaeUsed: createdUser.storgae_used,
+                storageUsed: createdUser.storage_used,
             }
         });
     } catch (error) {

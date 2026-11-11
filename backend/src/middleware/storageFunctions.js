@@ -15,13 +15,14 @@ export const StorageCheck = async (req, res, next) => {
             return res.status(500).json({ message: "database connection error from users table." });
         }
 
-        const storageAval = data.storage_limit - data.storage_used;
+        let storageAval = data.storage_limit - data.storage_used;
+        const storageUsed = data.storage_used;
 
         if(fileSize > storageAval){
             return res.status(400).json({ message: "No enough storage space." });
         }
 
-        req.strogeInfo = {storageAval};
+        req.storageUsed = data.storage_used;
         next();
     } catch (error) {
         return res.status(401).json({ message: "Unable to check storage limit." })

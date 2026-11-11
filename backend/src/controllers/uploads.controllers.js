@@ -30,12 +30,8 @@ export const fileUpload = async (req, res) => {
             console.log(metaDataError);
             return res.status(500).json({ message: "database connection error from files table." });
         }
-
-        const storageUsed = fileInfo.fileSize + req.storageInfo.storageAval;
-        const { data:storageData, error:storageError} = await supabase.from("users").update({ storage_used:storageUsed }).eq('id', userId);
-        if(!storageData){
-            return res.status(401).json({ message: "Not able to update storage." });
-        }
+        const storageUsed = req.storageUsed;
+        const { error:storageError} = await supabase.from("users").update({ storage_used:storageUsed+fileInfo.fileSize }).eq('id', req.user.id);
         if(storageError){
             return res.status(500).json({ message: "database connection error from users table." });
         }
