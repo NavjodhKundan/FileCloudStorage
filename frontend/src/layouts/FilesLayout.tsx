@@ -1,9 +1,6 @@
 import { FileCard } from "../components/fileCard"
-import { userInfo } from "../states/zustandStates";
 import { useEffect, useState } from "react";
-
-const API_URL = import.meta.env.VITE_API_URL;
-const { accessToken } = userInfo.getState();
+import { getAllFiles } from "../components/fileServices";
 
 export const FileLayout = ({searchQuery}: any) => {
 
@@ -17,26 +14,6 @@ export const FileLayout = ({searchQuery}: any) => {
     }
 
     const [files, setFiles] = useState<FileInfo[]>([]);
-    async function getAllFiles() {
-        try {
-            const response = await fetch(
-                `${API_URL}/files/getAllFiles`,
-                {
-                    method: "GET",
-                    headers: { authorization: `Bearer ${accessToken}` }
-                }
-            );
-            const data = await response.json().catch(() => ({}));
-            if (!response.ok) {
-                throw new Error(data.message || "Failed to fetch files.");
-            }
-
-            return data;
-        } catch (error) {
-            console.log("something went wrong: ", error);
-            return [];
-        }
-    }
 
     useEffect(() => {
         async function loadFiles() {

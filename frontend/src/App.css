@@ -6,7 +6,8 @@ body{
 /* css styling for login and signup page */
 .authBody{
     border: 1px solid;
-    height: 100vh;background-color: #dad3ff;
+    height: 100vh;
+    background-color: #dad3ff;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,7 +23,7 @@ body{
 .authCard img{
     margin-top: 25px;
     height: 150px;
-    width: 500px;
+    width: 400px;
 }
 .authCard h1{
     color: white;

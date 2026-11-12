@@ -1,5 +1,5 @@
 import { userInfo } from "../states/zustandStates"
-import { formatDate } from "./fileCard";
+import { formatDate } from "./fileServices";
 
 export const UserInfoCard = () => {
 

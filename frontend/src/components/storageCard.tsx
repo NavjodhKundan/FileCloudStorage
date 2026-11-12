@@ -1,5 +1,5 @@
 import { userInfo } from "../states/zustandStates";
-import { formatFileSize } from "./fileCard";
+import { formatFileSize } from "./fileServices";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
