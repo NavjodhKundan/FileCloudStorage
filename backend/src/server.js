@@ -17,9 +17,7 @@ app.use(cors({
 //middleware
 app.use(express.json());
 app.use("/", healthRouter);
-app.use("/", userAuthRouter);
-app.use("/fileUplaodRouter", fileOperationsRouter);
-app.use("/fileoperationsrouters", fileOperationsRouter);
-app.use("/deleteFileRouter", fileOperationsRouter);
+app.use("/authorization", userAuthRouter);
+app.use("/files",fileOperationsRouter);
 
 app.listen(PORT, () => console.log(`Backend is running at http://localhost:${PORT}`));
