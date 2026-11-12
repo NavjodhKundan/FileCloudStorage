@@ -1,16 +1,16 @@
 import { userInfo } from "../states/zustandStates"
 
 
-const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:3001";//backend url
+const API_URL = import.meta.env.VITE_API_URL;//backend url
 
 async function signupRequest(event:any, navigate:any) {
 
     event.preventDefault(); //preventing default browser actions.
-    const {firstName, lastName, email, password, updatePassword, updateAccessToken, updateEmail,updateFirstName, updateLastName, updateId, updateStorageLimit, updateStorageUsed} = userInfo.getState();
+    const {firstName, lastName, email, password, updatePassword, updateAccessToken, updateEmail,updateFirstName, updateLastName, updateId, updateStorageLimit, updateStorageUsed, updateCreatedAt} = userInfo.getState();
     try {
         //sending request to backend
         const response = await fetch(
-            `${API_URL}/signup`,
+            `${API_URL}/authorization/signup`,
             {
                 method: "POST",
                 headers: {
@@ -32,6 +32,7 @@ async function signupRequest(event:any, navigate:any) {
         updateLastName(data.user.lastName);
         updateStorageLimit(data.user.sotrageLimit);
         updateStorageUsed(data.user.storageUsed);
+        updateCreatedAt(data.user.createdAt);
         navigate("/dashboard");//navigating user to dashboard
     } catch (error) {
         console.error(error);

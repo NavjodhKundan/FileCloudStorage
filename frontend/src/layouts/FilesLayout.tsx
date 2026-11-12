@@ -20,7 +20,7 @@ export const FileLayout = ({searchQuery}: any) => {
     async function getAllFiles() {
         try {
             const response = await fetch(
-                `${API_URL}/fileoperationsrouters/getAllFilesController`,
+                `${API_URL}/files/getAllFiles`,
                 {
                     method: "GET",
                     headers: { authorization: `Bearer ${accessToken}` }

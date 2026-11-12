@@ -26,7 +26,7 @@ export const FileUpload = () => {
         try{
             
             const response = await fetch(
-                `${API_URL}/fileUplaodRouter/fileUploadController`, {
+                `${API_URL}/files/uploadFile`, {
                     method: "POST",
                     headers: { authorization: `Bearer ${accessToken}`},
                     body: formData

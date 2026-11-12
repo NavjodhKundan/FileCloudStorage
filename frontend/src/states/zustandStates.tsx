@@ -7,6 +7,7 @@ type State = {
     firstName: string,
     lastName: string,
     email: string,
+    createdAt: string,
     password: string,
     accessToken: string,
     storageLimit: number,
@@ -18,6 +19,7 @@ type Action = {
     updateFirstName: (firstName: State['firstName']) => void
     updateLastName: (lastName: State['lastName']) => void
     updateEmail: (email: State['email']) => void
+    updateCreatedAt: (createdAt: State['createdAt']) => void,
     updatePassword: (password: State['password']) => void
     updateAccessToken: (accessToken: State['accessToken']) => void
     clearAll: ()=> void
@@ -33,6 +35,7 @@ export const userInfo = create<State&Action>()(
         firstName: "",
         lastName: "",
         email: "",
+        createdAt: "",
         password: "",
         accessToken: "",
         storageLimit: 0,
@@ -41,6 +44,7 @@ export const userInfo = create<State&Action>()(
         updateFirstName: (firstName) => set(() => ({ firstName: firstName})),
         updateLastName: (lastName) => set(() => ({ lastName: lastName})),
         updateEmail: (email) => set(() => ({ email: email})),
+        updateCreatedAt: (createdAt) => set(() => ({ createdAt: createdAt })),
         updatePassword: (password) => set(() => ({ password: password})),
         updateAccessToken: (accessToken) => set(() => ({accessToken: accessToken})),
         clearAll: () => set({
@@ -64,6 +68,7 @@ export const userInfo = create<State&Action>()(
             firstName: state.firstName,
             lastName: state.lastName,
             email: state.email,
+            createdAt: state.createdAt,
             accessToken: state.accessToken,
             storageLimit: state.storageLimit,
             storageUsed: state.storageUsed

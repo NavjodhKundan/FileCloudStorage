@@ -42,7 +42,7 @@ async function deleteFile(fileId: number){
     const API_URL = import.meta.env.VITE_API_URL;
     try{
         const response = await fetch(
-            `${API_URL}/deleteFileRouter/deleteFileController`,
+            `${API_URL}/files/deleteFile`,
             {
                 method: "DELETE",
                 headers: { 
@@ -69,6 +69,47 @@ async function deleteFile(fileId: number){
     }
 }
 
+//function for user to request to download files
+async function downloadFile(fileId:number, fileName:string) {
+    const { accessToken } = userInfo.getState();//getting user access token
+    const API_URL = import.meta.env.VITE_API_URL;
+    try{
+        //sending request to backend
+        const response = await fetch(
+            `${API_URL}/files/downloadFile/${fileId}`,
+            {
+                method: "GET",
+                headers: { Authorization: `Bearer ${accessToken}` }
+            }
+        )
+
+        //checking for healthy response
+        if(!response.ok){
+            console.log("error from backend");
+            return;
+        }
+
+        //converting response to blob
+        const blob = await response.blob();
+        // Create a temporary download URL
+        const url = window.URL.createObjectURL(blob);
+
+        // Create a temporary anchor element
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = fileName;
+
+        document.body.appendChild(link);
+        link.click();
+
+        // Clean up
+        link.remove();
+        window.URL.revokeObjectURL(url);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 type fileInfo = {
     fileId: number,
     name: string,
@@ -85,7 +126,7 @@ export const FileCard = (props: fileInfo) => {
                 <span>{formatFileSize(props.size)}</span>
                 <span>{formatFileType(props.type)}</span>
                 <span>{formatDate(props.createdAt)}</span>
-                <span><button title="download file">⬇️</button></span>
+                <span><button onClick={() => downloadFile(props.fileId, props.name)} title="download file">⬇️</button></span>
                 <span><button onClick={() => deleteFile(props.fileId)} title="delete file">❌</button></span>
             </li>
         </div>
