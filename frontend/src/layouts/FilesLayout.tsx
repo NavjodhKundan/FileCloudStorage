@@ -26,16 +26,7 @@ export const FileLayout = ({searchQuery}: any) => {
     const filteredFiles = files.filter((file) => {
             if ( file.originalName.toLocaleLowerCase().includes(searchQuery.toLocaleLowerCase()) ||
             file.fileType.toLocaleLowerCase().includes(searchQuery.toLocaleLowerCase()) ) {
-                return (
-                    <FileCard
-                        key={file.fileId}
-                        fileId={Number(file.fileId)}
-                        name={file.originalName}
-                        size={file.fileSize}
-                        type={file.fileType}
-                        createdAt={file.createdAt}
-                    />
-                )
+                return true;
             }
     })
 
@@ -54,8 +45,8 @@ export const FileLayout = ({searchQuery}: any) => {
                                 createdAt={file.createdAt}
                             />
                         ))
-                    ) : ( <p>no files found.</p> )
-                ) : (<p>no files to display.</p>)
+                    ) : ( <p>No files found.</p> )
+                ) : (<p>No files to show.</p>)
             }
         </div>
     )

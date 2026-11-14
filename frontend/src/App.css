@@ -272,3 +272,30 @@ body{
     background-color: red;
     cursor: pointer;
 }
+
+/* css styling for file types cards that are displayed on dashboard */
+.typeCards{
+    margin: 20px 0 0 25px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+}
+.displayCard{
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    height: 100px;
+    width: 200px;
+    text-align: center;
+    padding: 5px 0 5px 0;
+    transition: transform 0.3s ease-in-out;
+}
+.displayCard:hover{
+    border: 1px solid #8c5605;
+    transform: scale(1.05);
+}
+.displayCard #text{
+    font-size: 15px;
+}
+.displayCard #number{
+    font-size: 25px;
+}
