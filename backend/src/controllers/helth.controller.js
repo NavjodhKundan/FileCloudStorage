@@ -6,6 +6,6 @@
 export const checkHealth = (request, response) => {
     response.status(200).send({
         status: "Connected",
-        message: "Frontend and backend are communicating"
+        message: "backend is healthy."
     });
 }
