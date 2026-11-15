@@ -21,6 +21,10 @@ export const FileLayout = ({searchQuery}: any) => {
         async function loadFiles() {
             setLoading(true);
             const data = await getAllFiles();
+
+            console.log("getAllFiles response:", data);
+            console.log("Is array:", Array.isArray(data));
+
             setFiles(data);
             setLoading(false);
         }

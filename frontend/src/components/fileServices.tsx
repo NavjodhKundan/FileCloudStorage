@@ -11,7 +11,7 @@ export async function getAllFiles () {
                 headers: { authorization: `Bearer ${accessToken}` }
             }
         );
-        const data = await response.json().catch(() => ({}));
+        const data = await response.json();
         if (!response.ok) {
             throw new Error(data.message || "Failed to fetch files.");
         }
@@ -107,7 +107,7 @@ export async function downloadFile(fileId:number, fileName:string) {
 
         //checking for healthy response
         if(!response.ok){
-            alert("Not able to delete file. Try Again!")
+            alert("Not able to download file. Try Again!")
             return;
         }
 
