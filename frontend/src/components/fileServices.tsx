@@ -1,7 +1,7 @@
 import { userInfo } from "../states/zustandStates";
 
 export async function getAllFiles () {
-    const API_URL = import.meta.env.API_URL;
+    const API_URL = import.meta.env.VITE_API_URL;
     const { accessToken } = userInfo.getState();
     try {
         const response = await fetch(
