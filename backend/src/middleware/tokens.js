@@ -24,6 +24,8 @@ export function verifyToken(req, res, next){
     }
 }
 
-export function refreshToken(){
-    
-}
+// export function refreshToken(req, res, next){
+//     return jwt.sign(
+//         process.env.REFRESH_TOKEN_SECRET
+//     );
+// }

@@ -31,12 +31,15 @@ export const fileUpload = async (req, res) => {
             return res.status(500).json({ message: "database connection error from files table." });
         }
         const storageUsed = req.storageUsed;
-        const { error:storageError} = await supabase.from("users").update({ storage_used:storageUsed+fileInfo.fileSize }).eq('id', req.user.id);
+        const { data:storageData, error:storageError} = await supabase.from("users").update({ storage_used:storageUsed+fileInfo.fileSize }).eq('id', req.user.id).select("storage_used").single();
         if(storageError){
             return res.status(500).json({ message: "database connection error from users table." });
         }
 
-        return res.status(200).json({ message: "File uploaded successfully!" })
+        return res.status(200).json({ 
+            message: "File uploaded successfully!",
+            storageUsed: storageData.storage_used
+        })
     } catch (error) {
         return res.status(500).json({
             message: "server error, uploading failed...",

@@ -21,7 +21,7 @@ export const userSignup = async (req, res) => {
             first_name:firstName, 
             last_name:lastName, email:email, 
             password:hashPassword, 
-        }).select().maybeSingle();
+        }).select().single();
         if(insert_error){
             return res.status(500).json({ message: "Error creating user" });
         }
@@ -96,25 +96,31 @@ export const userLogin = async (req, res) => {
 export const deleteUserAccount = async (req, res) => {
     try{
         const userId = req.user.id;//getting user id from request
-
         //deleteing all records of user from database
         const { data:user, error:userError } = await supabase.from("users").delete().eq("id", userId).select().single();
-        const { data:files, error:fileError } = await supabase.from("files").delete().eq("owner", userId).select("file_path");
+        const { error:fileError } = await supabase.from("files").delete().eq("owner", userId);
 
         //checking for errors
-        if(userError || fileError || !user || !files){
+        if(userError || fileError || !user){
             return res.status(404).json({ message: "User or files not found." });
         }
 
-        const userDirectory = `${user.first_name}_${user.last_name}_${userId}`;
-
+        const userDirectory = `${process.env.FILE_PATH}/${user.first_name}_${user.last_name}_${userId}`;
         await fs.rm(userDirectory, {
             recursive: true,
             force: true
         });
 
-        return res.status(200);
+        return res.status(200).json({ message: "account deleted"});
     } catch (error) {
         return res.status(500).json({ message: "Unable to delete account." });
     }
+}
+
+export const checkUserSession = (req, res) => {
+    const userId = req.user.id;
+    if(userId){
+        return res.status(200).json({ message: "authorized"});
+    }
+    return res.status(404).json({ message: "unauthorized" });
 }

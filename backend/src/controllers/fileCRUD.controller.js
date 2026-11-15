@@ -38,7 +38,7 @@ export const deleteFile = async (req, res) => {
         const { fileId } = req.body;//saving file ID 
         //getting file metadata from database
         const { data: file, error: fileError } = await supabase.from("files").select().eq("id", fileId).eq("owner", userId).single();
-        const { data: user, error: userError } = await supabase.from("users").select().eq("id", userId);
+        const { data: user, error: userError } = await supabase.from("users").select().eq("id", userId).single();
 
         if (fileError || !file || userError || !user) {
             return res.status(404).json({ message: "File or user not found." });
@@ -65,8 +65,9 @@ export const deleteFile = async (req, res) => {
             updatedStorage = 0;
         }
 
-        const { data: storage, error: storageError } = await supabase.from("users").update({ storage_used: updatedStorage }).eq("id", userId).select("storage_used");
+        const { data: storage, error: storageError } = await supabase.from("users").update({ storage_used: updatedStorage }).eq("id", userId).select("storage_used").single();
         if (storageError) {
+            console.log(storageError);
             return res.status(400).json({ message: "unable to update storage used." });
         }
         return res.status(200).json({ storageUsed: storage.storage_used })
