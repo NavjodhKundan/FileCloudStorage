@@ -1,7 +1,7 @@
 import { userInfo } from "../states/zustandStates"
 
 
-const API_URL = import.meta.env.API_URL;//backend url
+const API_URL = import.meta.env.VITE_API_URL;//backend url
 
 async function signupRequest(event:any, navigate:any) {
 

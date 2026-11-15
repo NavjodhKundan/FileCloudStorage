@@ -94,7 +94,7 @@ export async function deleteFile(fileId: number){
 //function for user to request to download files
 export async function downloadFile(fileId:number, fileName:string) {
     const { accessToken } = userInfo.getState();//getting user access token
-    const API_URL = import.meta.env.API_URL;
+    const API_URL = import.meta.env.VITE_API_URL;
     try{
         //sending request to backend
         const response = await fetch(

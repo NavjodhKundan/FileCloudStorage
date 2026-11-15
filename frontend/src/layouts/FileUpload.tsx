@@ -27,7 +27,7 @@ export const FileUpload = () => {
         const { accessToken, updateStorageUsed } = userInfo.getState();
         const formData = new FormData();
         formData.append("file", selectedFile);
-        const API_URL = import.meta.env.API_URL;
+        const API_URL = import.meta.env.VITE_API_URL;
 
         try{
             const response = await fetch(
