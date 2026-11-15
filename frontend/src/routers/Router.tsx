@@ -7,6 +7,7 @@ import { Settings } from "../pages/Settings";
 
 //created routes for changing pages whithin the application
 const router = createBrowserRouter([
+    { path: "/", Component:Login },
     { path: "/login", Component: Login }, //path for login page
     { path: "/signup", Component: Signup }, //path for signup page
     { path: "/dashboard", Component: Dashboard }, //path for dashborad page
