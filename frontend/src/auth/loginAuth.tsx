@@ -6,7 +6,7 @@ export async function loginRequest(event:any, navigate:any) {
 
     event.preventDefault(); //preventing default browser actions.
 
-    const {email, password, updatePassword, updateAccessToken, updateFirstName, updateLastName, updateEmail, updateId, updateStorageLimit, updateStorageUsed, updateCreatedAt, accessToken} = userInfo.getState();
+    const {email, password, updatePassword, updateAccessToken, updateFirstName, updateLastName, updateEmail, updateId, updateStorageLimit, updateStorageUsed, updateCreatedAt} = userInfo.getState();
 
     try {
         
