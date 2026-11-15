@@ -7,7 +7,7 @@ export const DeleteAccount = () => {
     async function deleteAccount() {
         try {
             const { accessToken, clearAll } = userInfo.getState();//getting user id
-            const API_URL = import.meta.env.VITE_API_URL;//saving api url
+            const API_URL = import.meta.env.API_URL;//saving api url
 
             const response = await fetch(
                 `${API_URL}/authorization/deleteAccount`,

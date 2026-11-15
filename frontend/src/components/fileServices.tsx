@@ -1,7 +1,7 @@
 import { userInfo } from "../states/zustandStates";
 
 export async function getAllFiles () {
-    const API_URL = import.meta.env.VITE_API_URL;
+    const API_URL = import.meta.env.API_URL;
     const { accessToken } = userInfo.getState();
     try {
         const response = await fetch(
@@ -62,7 +62,7 @@ export function formatFileType(fileType: string): string{
 
 export async function deleteFile(fileId: number){
     const { accessToken, updateStorageUsed } = userInfo.getState();
-    const API_URL = import.meta.env.VITE_API_URL;
+    const API_URL = import.meta.env.API_URL;
     try{
         const response = await fetch(
             `${API_URL}/files/deleteFile`,
@@ -94,7 +94,7 @@ export async function deleteFile(fileId: number){
 //function for user to request to download files
 export async function downloadFile(fileId:number, fileName:string) {
     const { accessToken } = userInfo.getState();//getting user access token
-    const API_URL = import.meta.env.VITE_API_URL;
+    const API_URL = import.meta.env.API_URL;
     try{
         //sending request to backend
         const response = await fetch(
