@@ -35,7 +35,7 @@ export const BodyHeader = ({searchQuery, setSearchQuery}: SearchBarProps) => {
 
     return (
         <div className="bodyHeader">
-            <span id="firstChild" style={{marginTop:"30px"}}><SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery}/></span>
+            <span id="firstChild" className="searchBar" style={{marginTop:"30px"}}><SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery}/></span>
             <span id="secondChild"><UserImage/></span>
             <span id="thirdChild"><UserName/></span>
         </div>

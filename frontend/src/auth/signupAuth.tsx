@@ -22,21 +22,22 @@ async function signupRequest(event:any, navigate:any) {
 
         const data = await response.json().catch(()=>({}));//getting response from backend
         if (!response.ok) {
-            throw new Error(data.message ?? "Registration failed");//theroing error if not successful
+            alert(data.message);
+            window.location.reload();
+            //throw new Error(data.message ?? "Registration failed");//theroing error if not successful
         }
         updatePassword("");//clearing password from global state
+        console.log(data);
         updateId(data.user.id);
         updateAccessToken(data.accessToken);
         updateEmail(data.user.email);
         updateFirstName(data.user.firstName);
         updateLastName(data.user.lastName);
-        updateStorageLimit(data.user.sotrageLimit);
+        updateStorageLimit(data.user.storageLimit);
         updateStorageUsed(data.user.storageUsed);
         updateCreatedAt(data.user.createdAt);
         navigate("/dashboard");//navigating user to dashboard
-    } catch (error) {
-        console.error(error);
-    }
+    } catch {}
 }
 
 export default signupRequest;

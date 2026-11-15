@@ -6,9 +6,10 @@ export async function loginRequest(event:any, navigate:any) {
 
     event.preventDefault(); //preventing default browser actions.
 
-    const {email, password, updatePassword, updateAccessToken, updateFirstName, updateLastName, updateEmail, updateId, updateStorageLimit, updateStorageUsed, updateCreatedAt} = userInfo.getState();
+    const {email, password, updatePassword, updateAccessToken, updateFirstName, updateLastName, updateEmail, updateId, updateStorageLimit, updateStorageUsed, updateCreatedAt, accessToken} = userInfo.getState();
 
     try {
+        
         //sending request to backend
         const response = await fetch(
             `${API_URL}/authorization/login`,
@@ -23,7 +24,8 @@ export async function loginRequest(event:any, navigate:any) {
 
         const data = await response.json().catch(()=>({}));//getting response from backend
         if (!response.ok) {
-            throw new Error(data.message || "login failed");//theroing error if not successful
+            alert(data.message);
+            window.location.reload();
         }
         updatePassword("");//clearing password from global state
         updateId(data.user.id);
@@ -35,8 +37,6 @@ export async function loginRequest(event:any, navigate:any) {
         updateStorageUsed(data.user.storageUsed);
         updateCreatedAt(data.user.createdAt);
         navigate("/dashboard");//navigating user to dashboard
-    } catch (error) {
-        console.error(error);
-    }
+    } catch (error) {}
 
 }

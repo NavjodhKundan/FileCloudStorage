@@ -13,55 +13,52 @@ export const TotalFiles = () => {
         createdAt: string,
     }
 
+    const [loading, setLoading] = useState(true);
     const [files, setFiles] = useState<FileInfo[]>([]);
-    const [typeCount, setTypeCount] = useState({
-        pdf: 0,
-        documnet: 0,
-        excel: 0,
-        powerPoint: 0,
-        images: 0,
-        text: 0,
-        zip: 0,
-        others: 0
-    });
 
     useEffect(() => {
         async function loadFiles() {
-            const data = await getAllFiles();
-            setFiles(data);
+            try {
+                const data = await getAllFiles();
+                setFiles(data);
+            } catch (error) {
+                console.log(error);
+            } finally {
+                setLoading(false);
+            }
         }
         loadFiles();
     }, []);
 
     const pdfCount = files.filter(file =>
-        formatFileType(file.fileType) === "pdf"
+        formatFileType(file.fileType) === "PDF"
     ).length;
 
-    const docCount = files.filter(file => 
+    const docCount = files.filter(file =>
         formatFileType(file.fileType) === "Word Document"
     ).length;
 
-    const exlCount = files.filter(file => 
+    const exlCount = files.filter(file =>
         formatFileType(file.fileType) === "Excel Spreadsheet"
     ).length;
 
-    const ppCount = files.filter(file => 
+    const ppCount = files.filter(file =>
         formatFileType(file.fileType) === "PowerPoint Presentation"
     ).length;
 
-    const imageCount = files.filter(file => 
+    const imageCount = files.filter(file =>
         formatFileType(file.fileType) === "GIF Image" || formatFileType(file.fileType) === "PNG Image" || formatFileType(file.fileType) === "JPEG Image"
     ).length;
 
-    const textCount = files.filter(file => 
+    const textCount = files.filter(file =>
         formatFileType(file.fileType) === "Text Document"
     ).length;
 
-    const zipCount = files.filter(file => 
+    const zipCount = files.filter(file =>
         formatFileType(file.fileType) === "ZIP Archive"
     ).length;
 
-    const otherCount = files.filter(file => 
+    const otherCount = files.filter(file =>
         formatFileType(file.fileType) === "unknown"
     ).length;
 
@@ -69,47 +66,47 @@ export const TotalFiles = () => {
         <div className="typeCards">
             <div className="displayCard">
                 <p id="text">Total number of files</p>
-                <p id="number">{files.length}</p>
+                {loading ? <p>Loading...</p> : <p id="number">{files.length}</p>}
             </div>
 
             <div className="displayCard">
                 <p id="text">PDF Files</p>
-                <p id="number">{pdfCount}</p>
+                {loading ? <p>Loading...</p> : <p id="number">{pdfCount}</p>}
             </div>
 
             <div className="displayCard">
                 <p id="text">Documnets files</p>
-                <p id="number">{docCount}</p>
+                {loading ? <p>Loading...</p> : <p id="number">{docCount}</p>}
             </div>
 
             <div className="displayCard">
                 <p id="text">Excel Files</p>
-                <p id="number">{exlCount}</p>
+                {loading ? <p>Loading...</p> : <p id="number">{exlCount}</p>}
             </div>
 
             <div className="displayCard">
                 <p id="text">PowerPoint Files</p>
-                <p id="number">{ppCount}</p>
+                {loading ? <p>Loading...</p> : <p id="number">{ppCount}</p>}
             </div>
 
             <div className="displayCard">
                 <p id="text">Images</p>
-                <p id="number">{imageCount}</p>
+                {loading ? <p>Loading...</p> : <p id="number">{imageCount}</p>}
             </div>
 
             <div className="displayCard">
                 <p id="text">Text Files</p>
-                <p id="number">{textCount}</p>
+                {loading ? <p>Loading...</p> : <p id="number">{textCount}</p>}
             </div>
 
             <div className="displayCard">
                 <p id="text">Zip Files</p>
-                <p id="number">{zipCount}</p>
+                {loading ? <p>Loading...</p> : <p id="number">{zipCount}</p>}
             </div>
 
             <div className="displayCard">
                 <p id="text">Other Files</p>
-                <p id="number">{otherCount}</p>
+                {loading ? <p>Loading...</p> : <p id="number">{otherCount}</p>}
             </div>
         </div>
     )

@@ -4,6 +4,8 @@ import { getAllFiles } from "../components/fileServices";
 
 export const FileLayout = ({searchQuery}: any) => {
 
+    const [loading, setLoading] = useState(false);
+
     type FileInfo = {
         fileId: string,
         originalName: string,
@@ -17,8 +19,10 @@ export const FileLayout = ({searchQuery}: any) => {
 
     useEffect(() => {
         async function loadFiles() {
+            setLoading(true);
             const data = await getAllFiles();
             setFiles(data);
+            setLoading(false);
         }
         loadFiles();
     }, []);
@@ -33,7 +37,7 @@ export const FileLayout = ({searchQuery}: any) => {
     return (
         <div className="middleBody">
             {
-                files.length > 0 ? (
+                loading ? "loading..." : files.length > 0 ? (
                     filteredFiles.length > 0 ? (
                         filteredFiles.map((file) => (
                             <FileCard

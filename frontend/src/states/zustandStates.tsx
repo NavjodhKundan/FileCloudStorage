@@ -55,7 +55,8 @@ export const userInfo = create<State&Action>()(
             password: "",
             accessToken: "",
             storageUsed: 0,
-            storageLimit: 0.
+            storageLimit: 0,
+            createdAt: "",
         }),
         updateStorageLimit: (storageLimit) => set(() => ({storageLimit: storageLimit})),
         updateStorageUsed: (storageUsed) => set(() => ({storageUsed: storageUsed})),

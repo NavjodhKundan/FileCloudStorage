@@ -3,9 +3,11 @@ import { userInfo } from "../states/zustandStates";
 import { loginRequest } from "../auth/loginAuth";
 import { useNavigate } from "react-router-dom";
 import companyLogo2 from "../assets/companyLogo2.png";
+import { useState } from "react";
 
 export const Login = () => {
 
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     const email = userInfo((state) => state.email);
@@ -13,6 +15,11 @@ export const Login = () => {
 
     const password = userInfo((state) => state.password);
     const updatePassword = userInfo((state) => state.updatePassword);
+
+    const btn = document.getElementById("loginBtn");
+    btn?.addEventListener("click", () => {
+        setLoading(true);
+    })
 
     return (
         <div className="authBody">
@@ -40,8 +47,9 @@ export const Login = () => {
                         required
                     /> <br />
 
-                    <button type="submit">Log in</button> <br />
+                    <button type="submit" id="loginBtn">Log in</button> <br />
                 </form>
+                {loading ? <p style={{color: "white"}}>Loading...</p> : ""}
                 <p>Dont have an account? <Link id="link" to="/Signup">Sign up</Link></p>
             </div>
         </div>

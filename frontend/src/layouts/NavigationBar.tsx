@@ -13,6 +13,7 @@ export const NavigationBar = () => {
 
     return (
         <div className="navbar">
+            
             <div className="comLogo">
                 <img src={companyLogo} alt="company logo"></img>
             </div>

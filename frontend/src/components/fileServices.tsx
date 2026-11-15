@@ -1,6 +1,6 @@
 import { userInfo } from "../states/zustandStates";
 
-export async function getAllFiles() {
+export async function getAllFiles () {
     const API_URL = import.meta.env.VITE_API_URL;
     const { accessToken } = userInfo.getState();
     try {
@@ -79,8 +79,7 @@ export async function deleteFile(fileId: number){
         const data = await response.json();
 
         if(!response.ok){
-            console.log("error from backend");
-            console.log(data.message);
+            alert("Not able to delete file. Try Again!");
             return;
         }
 
@@ -88,7 +87,7 @@ export async function deleteFile(fileId: number){
         alert("File deleted successfully!");
         window.location.reload();
     } catch (error) {
-        console.log(error);
+        alert("Not able to delete file. Try Again!")
     }
 }
 
@@ -108,7 +107,7 @@ export async function downloadFile(fileId:number, fileName:string) {
 
         //checking for healthy response
         if(!response.ok){
-            console.log("error from backend");
+            alert("Not able to delete file. Try Again!")
             return;
         }
 
@@ -129,6 +128,6 @@ export async function downloadFile(fileId:number, fileName:string) {
         link.remove();
         window.URL.revokeObjectURL(url);
     } catch (error) {
-        console.log(error);
+        alert("Not able to delete file. Try Again!");
     }
 }

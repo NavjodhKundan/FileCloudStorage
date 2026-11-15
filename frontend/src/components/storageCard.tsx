@@ -1,22 +1,16 @@
 import { userInfo } from "../states/zustandStates";
 import { formatFileSize } from "./fileServices";
-import { Doughnut } from "react-chartjs-2";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
-const {storageLimit, storageUsed} = userInfo.getState();
+//const {storageLimit, storageUsed} = userInfo.getState();
 
 export const StorageInfo = () => {
+    const storageUsed = userInfo((state) => state.storageUsed);
+    const storageLimit = userInfo((state) => state.storageLimit);
+    const usedStorage = (storageUsed/storageLimit*100).toFixed(2);
     return (
         <div className="storageInfo">
-            <p>Used {formatFileSize(storageUsed)} of {formatFileSize(storageLimit)}</p>
-        </div>
-    )
-}
-
-export const StorageChart = () => {
-    return (
-        <div className="storageChart">
-            <p>storage chart.</p>
+            <p>{formatFileSize(storageUsed)} / {formatFileSize(storageLimit)}</p>
+            {usedStorage === "NaN"? <p>Used 0%</p> : <p>Used {usedStorage}%</p>}
         </div>
     )
 }
@@ -24,7 +18,7 @@ export const StorageChart = () => {
 export const StorageCard = () => {
     return (
         <>
-            <StorageChart/>
+            <h3>Storage Overview</h3>
             <StorageInfo/>
         </>
     )

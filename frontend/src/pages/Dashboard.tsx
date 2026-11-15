@@ -3,11 +3,15 @@ import { UserImage } from "../layouts/BodyHeader"
 import { UserName } from "../layouts/BodyHeader"
 import { MainBody } from "../layouts/DashboardLayout"
 import { FileUpload } from "../layouts/FileUpload"
+import { checkUserSession } from "../auth/UserSession"
+import { NavigationDropDown } from "../layouts/navBarDropDown"
 
 export const Dashboard = () => {
+    checkUserSession();
     return (
         <div className="fullBody">
             <div className="leftSide">
+                <NavigationDropDown/>
                 <NavigationBar />
             </div>
             <div className="rightSide">

@@ -1,9 +1,12 @@
 import fileUploadImage from "../assets/uploadFile.png";
-import { useRef } from "react";
+import { useState, useRef } from "react";
 import { userInfo } from "../states/zustandStates";
 import { StorageCard } from "../components/storageCard";
 
 export const FileUpload = () => {
+
+    const [loading, setLoading] = useState(false);
+    const [ error, setError ] = useState("");
 
     const fileInputRef = useRef<HTMLInputElement>(null);
     const selectFile = () => {
@@ -12,19 +15,21 @@ export const FileUpload = () => {
 
     const fileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
 
+        setLoading(true);
+
         const selectedFile = event.target.files?.[0];
 
         if(!selectedFile){
-            console.log("no file selected!");
+            setError("No files selected.");
             return;
         }
 
-        const { accessToken } = userInfo.getState();
+        const { accessToken, updateStorageUsed } = userInfo.getState();
         const formData = new FormData();
         formData.append("file", selectedFile);
         const API_URL = import.meta.env.VITE_API_URL;
+
         try{
-            
             const response = await fetch(
                 `${API_URL}/files/uploadFile`, {
                     method: "POST",
@@ -32,13 +37,16 @@ export const FileUpload = () => {
                     body: formData
                 });
             const result = await response.json();
-            console.log(result.message);
             if(!response.ok){
-                throw new Error(result.message);
+                setError("unable to upload file");
+                return;
             }
+            updateStorageUsed(result.storageUsed);
             alert("File uploaded successfully!");
         } catch {
-            console.error("uploading failed");
+            setError("unable to upload file");
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -49,7 +57,9 @@ export const FileUpload = () => {
                 <h2>Store your file safely</h2>
                 <p>Click upload button and select your file. Once slected file will be uploaded.</p>
                 <input type="file" ref={fileInputRef} onChange={fileUpload} style={{display: "none"}}></input>
-                <button onClick={selectFile}>Upload Files</button>
+                {loading ? <button>Uploading...</button> : <button onClick={selectFile} id="uploadBtn">Upload Files</button>}
+                <br></br>
+                {error ? <p style={{color: "red"}}>{error}</p> : ""}
             </div>
 
             <div className="storageCard">

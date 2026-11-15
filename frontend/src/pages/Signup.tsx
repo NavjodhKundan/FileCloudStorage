@@ -3,8 +3,10 @@ import { userInfo } from '../states/zustandStates'
 import signupRequest from "../auth/signupAuth";
 import { useNavigate } from "react-router-dom";
 import companyLogo2 from "../assets/companyLogo2.png";
+import { useState } from "react";
 
 export const Signup = () => {
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     const fName = userInfo((state) => state.firstName);
@@ -18,6 +20,11 @@ export const Signup = () => {
 
     const password = userInfo((state) => state.password);
     const updatePassword = userInfo((state) => state.updatePassword);
+
+    const btn = document.getElementById("signupBtn");
+    btn?.addEventListener("click", () => {
+        setLoading(true);
+    });
 
     return (
         <div className="authBody">
@@ -65,9 +72,10 @@ export const Signup = () => {
                         required
                     /> <br />
 
-                    <button type="submit">Sign Up</button> <br />
+                    <button type="submit" id="signupBtn">Sign Up</button> <br />
                 </form>
 
+                {loading ? <p style={{color: "white"}}>Loading...</p> : ""}
                 <p>Already have an account? <Link to="/Login" id="link">Login</Link></p>
             </div>
         </div>

@@ -1,10 +1,10 @@
-body{
+body {
     padding: 0;
     margin: 0;
 }
 
 /* css styling for login and signup page */
-.authBody{
+.authBody {
     border: 1px solid;
     height: 100vh;
     background-color: #dad3ff;
@@ -13,29 +13,33 @@ body{
     align-items: center;
 }
 
-.authCard{
+.authCard {
     background-color: #1D125C;
     height: 600px;
     width: 550px;
     text-align: center;
     border-radius: 15px;
 }
-.authCard img{
+
+.authCard img {
     margin-top: 25px;
     height: 150px;
     width: 400px;
 }
-.authCard h1{
+
+.authCard h1 {
     color: white;
 }
-.authCard input{
+
+.authCard input {
     height: 35px;
     width: 250px;
     margin: 10px;
     text-align: center;
     font-size: 18px;
 }
-.authCard button{
+
+.authCard button {
     height: 30px;
     width: 200px;
     color: black;
@@ -43,53 +47,59 @@ body{
     background-color: #dad3ff;
     margin: 5px;
 }
-.authCard button:hover{
+
+.authCard button:hover {
     background-color: #85a9e2;
     cursor: pointer;
     width: 201px;
     height: 31px;
 }
-.authCard p{
+
+.authCard p {
     color: white;
     font-size: 18px;
 }
-#link{
+
+#link {
     text-decoration: none;
     color: #85a9e2;
 }
 
 /* css style for the header plus main body. It arranges header & main body into columns and divides the space accordingly. */
-.rightSide{
+.rightSide {
     display: grid;
     grid-template-rows: auto minmax(0, 1fr);
     margin-left: 220px;
 }
 
 /* cs styling for main body that divides the area into two sections: one for file upload and second for main page content like dashboard, files and settings. */
-.mainBody{
+.mainBody {
     display: flex;
     align-items: flex-start;
 }
 
 /* sccstyling for navigation bar */
-.navbar{
-    position:fixed;
+.navbar {
+    position: fixed;
     background-color: #1D125C;
     height: 100%;
     padding: 10px 10px 10px 10px;
     color: white;
 }
-.comLogo img{
+
+.comLogo img {
     height: 200px;
     width: 200px;
 }
+
 .navbar nav {
     display: flex;
     flex-direction: column;
     gap: 10px;
     width: 100%;
 }
-.navbar button{
+
+.navbar button {
     background-color: #1D125C;
     border: none;
     text-decoration: none;
@@ -99,46 +109,54 @@ body{
     padding: 5px 0 5px 40px;
 
 }
-.navbar button:hover{
+
+.navbar button:hover {
     background-color: #12055c;
     border-radius: 10px;
     cursor: pointer;
 }
-#navlist{
+
+#navlist {
     text-decoration: none;
     color: white;
     font-size: 25px;
     padding: 5px 0 5px 30px;
 }
-#navlist:hover{
+
+#navlist:hover {
     background-color: #12055c;
     border-radius: 10px;
 }
-#navlist.active{
+
+#navlist.active {
     background-color: #0c014b;
     border-radius: 10px;
 }
 
 /* css styling for header */
-.bodyHeader{
+.bodyHeader {
     background-color: #f5f5f5;
     margin: 20px;
     display: flex;
     border-radius: 20px;
 }
-#firstChild{
+
+#firstChild {
     padding-left: 5px;
     flex: 7;
 }
-#secondChild{
+
+#secondChild {
     flex: 0.5;
     padding-top: 20px;
 }
-#thirdChild{
+
+#thirdChild {
     flex: 1.5;
     padding-top: 20px;
 }
-#searchBar{
+
+#searchBar {
     width: 95%;
     height: 40px;
     font-size: large;
@@ -146,17 +164,19 @@ body{
     border-radius: 20px;
     padding: 5px 0 5px 20px;
 }
+
 .userImgage img {
     height: 65px;
     border-radius: 50px;
     margin: 0 10px 0 10px;
 }
+
 .userName p {
     font-size: 25px;
 }
 
 /* css styling for middle body that displayes dashoard, settings and file contents */
-.middleBody{
+.middleBody {
     flex: 7;
     margin: 20px;
     height: 100%;
@@ -164,12 +184,13 @@ body{
 }
 
 /* css styling for file upload section */
-.fileUpload{
+.fileUpload {
     flex: 3;
     margin: 20px;
     margin-top: 0;
 }
-.uploadCard{
+
+.uploadCard {
     margin: 10px;
     padding: 10px;
     background-color: #f5f5f5;
@@ -177,13 +198,16 @@ body{
     border-radius: 10px;
 
 }
+
 .uploadCard img {
     height: 200px;
     width: 200px;
 }
+
 .uploadCard p {
     margin: 0 20px 0 20px;
 }
+
 .uploadCard button {
     background-color: #85a9e2;
     width: 350px;
@@ -194,17 +218,20 @@ body{
     border-radius: 15px;
     margin-top: 10px;
 }
-.uploadCard button:hover{
+
+.uploadCard button:hover {
     cursor: pointer;
     background-color: #a195e7;
 }
 
 /* css styling for storage card */
 .storageCard {
+    text-align: center;
     margin: 10px;
     padding: 10px;
     background-color: #f5f5f5;
     border-radius: 10px;
+    font-size: 20px;
 }
 
 /* styling for fileCard */
@@ -217,26 +244,32 @@ body{
     height: 50px;
     padding-top: 20px;
 }
-.fileCard:hover{
+
+.fileCard:hover {
     background-color: #f8fafc;
 }
-.fileCard li{
+
+.fileCard li {
     font-size: 18px;
     text-align: center;
     display: grid;
-    grid-template-columns: 2fr 1fr 2fr 2fr 1fr 1fr  5px;
+    grid-template-columns: 2fr 1fr 2fr 2fr 1fr 1fr 5px;
     padding-top: 5px;
+    overflow-wrap: break-word;
 }
-.fileCard button{
+
+.fileCard button {
     border: none;
     font-size: 18px;
 }
-.fileCard button:hover{
+
+.fileCard button:hover {
     cursor: pointer;
     background-color: rgb(79, 149, 235);
     font-size: 20px;
 }
-.fileCard button:hover title{
+
+.fileCard button:hover title {
     background-color: white;
 }
 
@@ -248,39 +281,44 @@ body{
     border-radius: 10px;
     margin-top: 10px;
 }
+
 .userInfoCard input {
     height: 40px;
     font-size: 20px;
     padding: 5px;
     border: none;
 }
+
 /* delete button */
-.deleteAcc{
+.deleteAcc {
     margin-top: 10px;
     background-color: #f5f5f5;
     border-radius: 10px;
     padding: 10px;
 }
-.deleteAcc button{
+
+.deleteAcc button {
     height: 40px;
     width: 250px;
     font-size: 20px;
     background-color: #85a9e2;
     border-radius: 5px;
 }
-.deleteAcc button:hover{
+
+.deleteAcc button:hover {
     background-color: red;
     cursor: pointer;
 }
 
 /* css styling for file types cards that are displayed on dashboard */
-.typeCards{
+.typeCards {
     margin: 20px 0 0 25px;
     display: flex;
     flex-wrap: wrap;
     gap: 50px;
 }
-.displayCard{
+
+.displayCard {
     background-color: #f5f5f5;
     border-radius: 10px;
     height: 100px;
@@ -289,13 +327,109 @@ body{
     padding: 5px 0 5px 0;
     transition: transform 0.3s ease-in-out;
 }
-.displayCard:hover{
+
+.displayCard:hover {
     border: 1px solid #8c5605;
     transform: scale(1.05);
 }
-.displayCard #text{
+
+.displayCard #text {
     font-size: 15px;
 }
-.displayCard #number{
+
+.displayCard #number {
     font-size: 25px;
+}
+
+/* loading page  */
+.loadingPage {
+    color: white;
+    background: transparent;
+    text-align: center;
+}
+
+.navDrop {
+    display: none;
+}
+
+/* using @media for users on mobile (480px and below) */
+
+@media screen and (max-width: 480px) {
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .authCard {
+        width: 300px;
+    }
+
+    .authCard img {
+        width: 200px;
+        height: 100px;
+    }
+
+    .authCard input {
+        width: 150px;
+    }
+
+    .authCard button {
+        width: 100px;
+    }
+
+    .fullBody {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .rightSide {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    /* navigation bar */
+    .navbar {
+        display: none;
+    }
+
+    .navDrop {
+        display: inline-block;
+        margin: 20px 0 20px 35px;
+    }
+
+    .navDrop select {
+        border-radius: 10px;
+        background-color: #12055c;
+        color: white;
+        width: 200px;
+        height: 50px;
+        font-size: 20px;
+        padding: 0 0 0 10px;
+
+    }
+
+    /* header */
+    .searchBar {
+        width: 200px;
+
+    }
+
+    #firstChild {
+        text-align: center;
+    }
+
+    #secondChild,
+    #thirdChild {
+        display: none;
+    }
+
+    /* main body (file list, upload card and storage overview) */
+    .mainBody {
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+    }
 }
