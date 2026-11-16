@@ -27,7 +27,6 @@ async function signupRequest(event:any, navigate:any) {
             //throw new Error(data.message ?? "Registration failed");//theroing error if not successful
         }
         updatePassword("");//clearing password from global state
-        console.log(data);
         updateId(data.user.id);
         updateAccessToken(data.accessToken);
         updateEmail(data.user.email);
